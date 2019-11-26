@@ -1,33 +1,27 @@
 package net.usermd.grabiecm.jee.databases.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.time.Year;
 
-@Entity
-//@Table(name = "m1023_m1000_base.CAR") //i can change name of entity
-public class Car {//implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Car {
+
     private long id;
 
     private String mark;
     private String model;
 
-    //@Transient colmun wasn't save
-    //@Enumerated(EnumType.STRING) saving column as string
     private String color;
     private Year year;
 
     public Car() {
     }
 
-    public Car(String mark, String model, String color, Year year) {
+    public Car(Long id, String mark, String model, String color, Year year) {
+        this.id = id;
         this.mark = mark;
         this.model = model;
         this.color = color;
-        this.year=year;
+        this.year = year;
     }
 
     public long getId() {
@@ -68,5 +62,25 @@ public class Car {//implements Serializable {
 
     public void setYear(Year year) {
         this.year = year;
+    }
+
+
+    public Car(Long id, String mark, String model, String color, String year) {
+        this.id = id;
+        this.mark = mark;
+        this.model = model;
+        this.color = color;
+        this.year = Year.of(Integer.parseInt(year));
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", year=" + year +
+                '}';
     }
 }
