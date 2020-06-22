@@ -56,7 +56,6 @@ public class CarShowGui extends VerticalLayout {
                 textFieldColor.setValue(car.getColor().toString());
                 numberFieldYear.setValue((double) car.getYear().getValue());
             } else {
-                System.out.println("u're fucked");
                 dialog.open();
             }
         });
@@ -65,7 +64,6 @@ public class CarShowGui extends VerticalLayout {
         this.grid = new Grid<>(Car.class);
         grid.setItems((Collection<Car>) carRepo.findAll());
         grid.addComponentColumn(this::buildDeleteButton);
-        //grid.addComponentColumn(this::buildEditButton);
 
         buttonAdd.addClickListener(clickEvent -> {
             String mark = textFieldMark.getValue();
@@ -80,7 +78,6 @@ public class CarShowGui extends VerticalLayout {
                     editCar(car,id);
                 } else {
                     carRepo.saveCar(car);
-                    //dialog.open();
                 }
             } else {
                 dialog.setCloseOnEsc(false);
